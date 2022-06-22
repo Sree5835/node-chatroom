@@ -6,12 +6,15 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-    console.log(`${socket.id.substr(0,2)} connected`);
     io.emit('message', `${socket.id.substr(0,2)} joined the chat!` );
 
     socket.on('message', (message) =>     {
         console.log(`${socket.id.substr(0,2)} said ${message}`);
-        io.emit('message', `${socket.id.substr(0,2)} said ${message}` );
+        io.emit('message', `${socket.id.substr(0,2)} said "${message}"` );
+    });
+
+    socket.on('disconnect', () => {
+        io.emit('message', `${socket.id.substr(0,2)} joined the chat!` );
     });
 });
 
