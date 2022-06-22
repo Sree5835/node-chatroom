@@ -11,11 +11,15 @@ const rl = readline.createInterface({
 
 
 socket.on('message', text => {
-    console.log(text);
     //once a message is received, this code displays it and
     //awaits a response from user
-    rl.question('', message => {
+    console.log(text);
+});
+
+while(socket.connected) {
+
+rl.question('', message => {
         socket.emit('message', message)
         rl.close();
     });
-});
+}
