@@ -6,7 +6,7 @@ npm install
 npm start
 ```
 
-# Run the client(s)
+## Run the client(s)
 
 ```
 cd app
