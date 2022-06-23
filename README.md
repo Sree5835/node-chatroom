@@ -14,4 +14,6 @@ npm install
 npm start
 ```
 
-\*\*\* Use the ESC key to stop the client!
+Use the ESC key to stop the client!
+Or, type in 'escape', 'q', or 'C-c'
+in the input area

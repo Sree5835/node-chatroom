@@ -2,10 +2,14 @@ const { io } = require("socket.io-client");
 const socket = io('ws://localhost:8080');
 const blessed = require('neo-blessed');
 
+/*the code below breaks the terminal down into three usable
+components: screen, message list, input area. These are also styled as follows
+*/
     const screen = blessed.screen({
       smartCSR: true,
       title: 'Node Chatroom',
     });
+
     var messageList = blessed.list({
       align: 'left',
       mouse: true,
@@ -38,10 +42,11 @@ const blessed = require('neo-blessed');
         },
       },
     });
+
     input.key('enter', async function() {
       var message = this.getValue();
       try {
-        await socket.emit("message",message);
+        socket.emit("message", message);
       } catch (err) {
         socket.emit("error",err);
       } finally {
@@ -49,10 +54,11 @@ const blessed = require('neo-blessed');
         screen.render();
       }
     });
-    // Append our box to the screen.
+    //exit keys
     screen.key(['escape', 'q', 'C-c'], function() {
       return process.exit(0);
     });
+     // Append our box to the screen.
     screen.append(messageList);
     screen.append(input);
     input.focus();

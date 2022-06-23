@@ -27,6 +27,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('error',(err)=>{
+        //using the reserved eventName for displaying errors
         console.log(error);
         io.emit('message', err);
     })
