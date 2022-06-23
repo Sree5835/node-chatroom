@@ -13,3 +13,5 @@ cd app
 npm install
 npm start
 ```
+
+\*\*\* Use the ESC key to stop the client!
